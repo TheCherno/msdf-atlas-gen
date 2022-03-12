@@ -36,6 +36,9 @@ project "msdf-atlas-gen"
 	filter "system:windows"
 		systemversion "latest"
 
+	filter "system:Linux"
+		buildoptions { "-fPIE" }
+
 	filter "configurations:Debug"
 		runtime "Debug"
 		symbols "on"
