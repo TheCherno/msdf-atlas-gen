@@ -1,5 +1,10 @@
 include "msdfgen"
 
+-- Force premake not to generate over the top of existing `Makefile`.
+project "msdf-atlas-gen-dummy"
+	kind "StaticLib"
+    files { "%{HazelRootDirectory}/Hazel-ScriptCore/Source/Dummy.cpp" }
+
 project "msdf-atlas-gen"
 	kind "StaticLib"
 	language "C++"
@@ -8,6 +13,8 @@ project "msdf-atlas-gen"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	DefaultTargetParams(true)
 
 	files
 	{
@@ -23,28 +30,7 @@ project "msdf-atlas-gen"
 		"msdfgen/include"
 	}
 
-	defines
-	{
-		"_CRT_SECURE_NO_WARNINGS"
-	}
-
 	links
 	{
 		"msdfgen"
 	}
-
-	filter "system:windows"
-		systemversion "latest"
-
-	filter "configurations:Debug"
-		runtime "Debug"
-		symbols "on"
-
-	filter "configurations:Release"
-		runtime "Release"
-		optimize "on"
-
-	filter "configurations:Dist"
-		runtime "Release"
-		optimize "on"
-        symbols "off"
