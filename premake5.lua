@@ -3,7 +3,7 @@ include "msdfgen"
 -- Force premake not to generate over the top of existing `Makefile`.
 project "msdf-atlas-gen-dummy"
 	kind "StaticLib"
-    files { "%{HazelRootDirectory}/Hazel-ScriptCore/Source/Dummy.cpp" }
+    files { "../../../Hazel-ScriptCore/Source/Dummy.cpp" }
 
 project "msdf-atlas-gen"
 	kind "StaticLib"
